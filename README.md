@@ -28,7 +28,7 @@ Presentation Layer (Console UI)
         ↓
 Business Logic Layer (Services)
         ↓
-Data Access Layer (Entity Framework Core + SQL Server)
+Data Access Layer (Entity Framework Core + MYSQL)
 ```
 
 ### ✔️ Benefits:
@@ -167,7 +167,7 @@ Testing is implemented using **xUnit**:
 | --------------------- | --------------------- |
 | C#                    | Programming Language  |
 | .NET                  | Application Framework |
-| SQL Server            | Database              |
+| MYSQL                 | Database              |
 | Entity Framework Core | ORM                   |
 | ADO.NET               | Data Access           |
 | xUnit                 | Unit Testing          |
@@ -192,7 +192,7 @@ Testing is implemented using **xUnit**:
 
 * Visual Studio / VS Code
 * .NET SDK
-* SQL Server
+* MYSQL 
 
 ---
 
