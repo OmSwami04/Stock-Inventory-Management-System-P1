@@ -15,7 +15,7 @@ namespace InventoryManagementSystem.Models
         public decimal Cost { get; set; }
         public decimal ListPrice { get; set; }
         public bool IsActive { get; set; } = true;
-        // public int ReorderLevel { get; set; }
+        public int ReorderLevel { get; set; }
 
         public ICollection<ProductSupplier>? ProductSuppliers { get; set; }
         public ICollection<StockTransaction>? StockTransactions { get; set; }

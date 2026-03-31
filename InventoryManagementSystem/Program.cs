@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using InventoryManagementSystem.Data;
 using InventoryManagementSystem.Services;
 using InventoryManagementSystem.ConsoleUI;
+using InventoryManagementSystem.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 class Program
@@ -10,12 +11,15 @@ class Program
     {
         var options = new DbContextOptionsBuilder<InventoryContext>()
             .UseMySql(
-                "server=localhost;database=InventoryDB;user=root;password=Shreyas@123",
+                "server=localhost;port=3306;database=InventoryDB;user=root;password=Swamiom11@",
                 new MySqlServerVersion(new Version(8, 0, 36))
             )
             .Options;
 
         using var context = new InventoryContext(options);
+
+        // Seed initial data
+        DbInitializer.Seed(context);
 
         var productService = new ProductService(context);
         var categoryService = new CategoryService(context);

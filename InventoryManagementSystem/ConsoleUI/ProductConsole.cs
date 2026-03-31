@@ -71,6 +71,11 @@ namespace InventoryManagementSystem.ConsoleUI
             while (!decimal.TryParse(Console.ReadLine(), out price))
                 Console.Write("Invalid input. Enter valid Price: ");
 
+            int reorderLevel;
+            Console.Write("Enter Reorder Level: ");
+            while (!int.TryParse(Console.ReadLine(), out reorderLevel))
+                Console.Write("Invalid input. Enter valid Reorder Level: ");
+
             _productService.AddProduct(new Product
             {
                 ProductName = name,
@@ -80,6 +85,7 @@ namespace InventoryManagementSystem.ConsoleUI
                 UnitOfMeasure = uom,
                 Cost = cost,
                 ListPrice = price,
+                ReorderLevel = reorderLevel,
                 IsActive = true
             });
         }
@@ -88,17 +94,18 @@ namespace InventoryManagementSystem.ConsoleUI
         {
             var products = _productService.GetAllProducts();
 
-            Console.WriteLine("{0,-5} {1,-20} {2,-12} {3,-10} {4,-10}",
-                "ID", "Name", "SKU", "Cost", "Price");
+            Console.WriteLine("{0,-5} {1,-20} {2,-12} {3,-10} {4,-10} {5,-15}",
+                "ID", "Name", "SKU", "Cost", "Price", "Reorder Level");
 
             foreach (var p in products)
             {
-                Console.WriteLine("{0,-5} {1,-20} {2,-12} {3,-10:F2} {4,-10:F2}",
+                Console.WriteLine("{0,-5} {1,-20} {2,-12} {3,-10:F2} {4,-10:F2} {5,-15}",
                     p.ProductId,
                     p.ProductName,
                     p.SKU,
                     p.Cost,
-                    p.ListPrice);
+                    p.ListPrice,
+                    p.ReorderLevel);
             }
         }
 
@@ -126,6 +133,7 @@ namespace InventoryManagementSystem.ConsoleUI
             Console.WriteLine($"Unit Of Measure: {product.UnitOfMeasure}");
             Console.WriteLine($"Cost: {product.Cost:F2}");
             Console.WriteLine($"List Price: {product.ListPrice:F2}");
+            Console.WriteLine($"Reorder Level: {product.ReorderLevel}");
             Console.WriteLine($"Active: {product.IsActive}");
             Console.WriteLine("====================================");
         }
@@ -173,6 +181,10 @@ namespace InventoryManagementSystem.ConsoleUI
             string? uom = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(uom))
                 product.UnitOfMeasure = uom;
+
+            Console.Write($"Enter New Reorder Level ({product.ReorderLevel}): ");
+            if (int.TryParse(Console.ReadLine(), out int reorderLevel))
+                product.ReorderLevel = reorderLevel;
 
             Console.Write("Set Active? (Y/N): ");
             string? input = Console.ReadLine();

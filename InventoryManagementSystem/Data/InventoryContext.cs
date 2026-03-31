@@ -13,22 +13,24 @@ namespace InventoryManagementSystem.Data
         public DbSet<StockTransaction> StockTransactions { get; set; }
         public DbSet<StockLevel> StockLevels { get; set; }
 
+        public InventoryContext() { }
+
         // ✅ Constructor for dependency injection / unit tests
         public InventoryContext(DbContextOptions<InventoryContext> options) : base(options)
         {
         }
 
         // Optional default config for console app
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     if (!optionsBuilder.IsConfigured)
-        //     {
-        //         optionsBuilder.UseMySql(
-        //             "server=localhost;database=InventoryDB;user=root;password=Shreyas@123",
-        //             new MySqlServerVersion(new Version(8, 0, 36))
-        //         );
-        //     }
-        // }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseMySql(
+                    "server=localhost;port=3306;database=InventoryDB;user=root;password=Swamiom11@",
+                    new MySqlServerVersion(new Version(8, 0, 36))
+                );
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

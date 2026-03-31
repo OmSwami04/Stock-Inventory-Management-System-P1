@@ -63,6 +63,7 @@ namespace InventoryManagementSystem.Services
             existing.UnitOfMeasure = product.UnitOfMeasure;
             existing.Cost = product.Cost;
             existing.ListPrice = product.ListPrice;
+            existing.ReorderLevel = product.ReorderLevel;
             existing.IsActive = product.IsActive;
 
             _context.SaveChanges();
